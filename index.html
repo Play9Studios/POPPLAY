@@ -744,7 +744,7 @@ function checkPassword() {
     setTimeout(() => err.style.display = 'none', 3000);
   }
 }
-document.getElementById('pw-input').addEventListener('keydown', e => { if (e.key === 'Enter') checkPassword(); });
+// pw-input enter key — wired up in init()
 
 // ── Setup ────────────────────────────────────────────────────────────────────
 function startBuilder() {
@@ -1197,21 +1197,6 @@ function removeProduct(id) {
 }
 
 // Handle drop on grid cells for repositioning
-document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('grid-table').addEventListener('drop', e => {
-    if (!dragPlaced) return;
-    const td = e.target.closest('td.grid-cell');
-    if (!td) return;
-    const r = +td.dataset.r, c = +td.dataset.c;
-    const errors = validatePlacement(dragPlaced, c, r);
-    if (errors.length > 0) { showWarning(errors[0]); dragPlaced = null; return; }
-    dragPlaced.x = c; dragPlaced.y = r;
-    dragPlaced = null;
-    renderPlacedProducts();
-    updateLivePricing();
-  });
-});
-
 // ── Fencing ───────────────────────────────────────────────────────────────────
 function toggleFencing() {
   state.fencingEnabled = !state.fencingEnabled;
@@ -1683,13 +1668,36 @@ function copyAdminLink() {
 }
 
 // ── Check for admin mode on load ──────────────────────────────────────────────
-window.addEventListener('load', () => {
-  const params = new URLSearchParams(window.location.search);
-  if (params.get('mode') === 'admin') {
-    // Still need password, then go to admin
+function init() {
+  // Wire up password enter key
+  const pwInput = document.getElementById('pw-input');
+  if (pwInput) {
+    pwInput.addEventListener('keydown', e => { if (e.key === 'Enter') checkPassword(); });
+    pwInput.focus();
   }
+
+  // Wire up grid table drop for repositioning placed products
+  const gridTable = document.getElementById('grid-table');
+  if (gridTable) {
+    gridTable.addEventListener('dragover', e => e.preventDefault());
+    gridTable.addEventListener('drop', e => {
+      if (!dragPlaced) return;
+      const td = e.target.closest('td.grid-cell');
+      if (!td) return;
+      const r = +td.dataset.r, c = +td.dataset.c;
+      const errors = validatePlacement(dragPlaced, c, r);
+      if (errors.length > 0) { showWarning(errors[0]); dragPlaced = null; return; }
+      dragPlaced.x = c; dragPlaced.y = r;
+      dragPlaced = null;
+      renderPlacedProducts();
+      updateLivePricing();
+    });
+  }
+
   renderFloorColours();
-});
+}
+
+document.addEventListener('DOMContentLoaded', init);
 </script>
 </body>
 </html>
