@@ -777,11 +777,11 @@ function checkPassword(){
   if(val===PASSWORD){
     const p=new URLSearchParams(window.location.search);
     if(p.get('mode')==='admin'){showScreen('admin');return;}
-    state.gridW=parseInt(document.getElementById('dim-w').value)||3;
-    state.gridL=parseInt(document.getElementById('dim-l').value)||4;
+    state.gridW=parseInt((document.getElementById('dim-w')||{}).value)||3;
+    state.gridL=parseInt((document.getElementById('dim-l')||{}).value)||4;
     // Pre-fill quote form from URL
     const email=p.get('email')||document.getElementById('pw-email').value;
-    document.getElementById('q-name').value=p.get('client')||'';
+    const qname=document.getElementById('q-fname')||document.getElementById('q-name'); if(qname) qname.value=p.get('client')||'';
     document.getElementById('q-email').value=email;
     document.getElementById('q-org').value=p.get('org')||'';
     buildSidebar();
