@@ -368,6 +368,44 @@ input,select,textarea{font-family:"Nunito Sans",sans-serif}
 .rules-row{display:flex;align-items:center;gap:12px;padding:8px 0}
 .rules-row img{width:48px;height:48px;object-fit:contain;border-radius:6px;background:#f9fafb;flex-shrink:0}
 .snap-wrap{overflow:auto}
+/* Quote v4 layout */
+.quote-layout{display:grid;grid-template-columns:1fr 380px;gap:20px;align-items:start}
+@media(max-width:900px){.quote-layout{grid-template-columns:1fr}}
+.q-right-panel{background:#111;border-radius:16px;padding:28px;color:#fff;position:sticky;top:80px}
+.q-right-panel h3{font-family:Nunito,sans-serif;font-weight:900;font-size:22px;color:#fff;margin-bottom:8px;line-height:1.2}
+.q-right-panel h3 span{color:var(--pink)}
+.q-right-sub{font-size:13px;color:rgba(255,255,255,.6);margin-bottom:22px;line-height:1.5}
+.q-field-dark label{display:block;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:5px}
+.q-field-dark input,.q-field-dark textarea{width:100%;padding:11px 14px;background:#222;border:1.5px solid rgba(255,255,255,.12);border-radius:8px;color:#fff;font-size:13px;font-family:"Nunito Sans",sans-serif}
+.q-field-dark input:focus,.q-field-dark textarea:focus{outline:none;border-color:var(--pink)}
+.q-field-dark input::placeholder,.q-field-dark textarea::placeholder{color:rgba(255,255,255,.3)}
+.q-name-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.q-field-dark{margin-bottom:12px}
+.q-toggle-group{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px}
+.q-toggle-btn{padding:8px 14px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;border:1.5px solid rgba(255,255,255,.2);background:transparent;color:rgba(255,255,255,.6);transition:all .15s;font-family:"Nunito Sans",sans-serif}
+.q-toggle-btn.active{background:var(--pink);border-color:var(--pink);color:#fff}
+.q-section-note{font-size:11px;color:rgba(255,255,255,.4);margin-bottom:6px;font-style:italic}
+.q-cta-btn{width:100%;padding:15px;border-radius:10px;background:var(--pink);color:#fff;font-weight:800;font-size:15px;margin-bottom:10px;cursor:pointer;border:none;font-family:"Nunito Sans",sans-serif;transition:opacity .2s;letter-spacing:.3px}
+.q-cta-btn:hover{opacity:.9}
+.q-cta-btn:disabled{opacity:.5;cursor:not-allowed}
+.q-rough-note{font-size:11px;color:rgba(255,255,255,.35);text-align:center;line-height:1.5;margin-top:6px}
+.q-what-happens{background:#f0fdf4;border:1px solid #86efac;border-radius:10px;padding:16px 18px;margin-bottom:14px}
+.q-what-happens h4{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#16a34a;margin-bottom:10px}
+.q-what-step{display:flex;align-items:flex-start;gap:10px;margin-bottom:8px;font-size:13px;color:#374151;line-height:1.4}
+.q-what-step:last-child{margin-bottom:0}
+.q-what-num{width:20px;height:20px;border-radius:50%;background:#16a34a;color:#fff;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.q-footer{text-align:center;padding:20px;font-size:12px;color:var(--soft);background:#111;color:rgba(255,255,255,.5)}
+.q-footer a{color:var(--pink);text-decoration:none}
+.kidszone-box{background:#fff5f8;border:1px solid #fecdd3;border-radius:10px;padding:14px 16px;margin-top:12px}
+.kidszone-box h5{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--pink);margin-bottom:8px}
+.kidszone-box ul{list-style:none;padding:0}
+.kidszone-box ul li{font-size:12px;color:var(--mid);padding:3px 0;display:flex;align-items:center;gap:6px}
+.kidszone-box ul li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--pink);flex-shrink:0}
+.kidszone-box .ks-note{font-size:11px;color:var(--soft);font-style:italic;margin-top:8px}
+.est-total-row{display:flex;justify-content:space-between;align-items:baseline;padding:12px 0 0;margin-top:4px;border-top:2px solid var(--pink)}
+.est-total-label{font-family:Nunito,sans-serif;font-weight:800;font-size:16px;color:var(--pink)}
+.est-total-val{font-family:Nunito,sans-serif;font-weight:900;font-size:22px;color:var(--pink)}
+.est-total-note{font-size:11px;color:var(--soft);margin-left:6px}
 
 /* ADMIN */
 #screen-admin.active{display:flex;min-height:100vh;align-items:center;justify-content:center;background:#f5f5f7}
@@ -555,31 +593,119 @@ input,select,textarea{font-family:"Nunito Sans",sans-serif}
 
 <!-- ══ QUOTE ═════════════════════════════════════════════════════ -->
 <div id="screen-quote" class="screen">
+  <!-- Quote header -->
   <div class="quote-hdr">
-    <h2>Your Pop Play Quote</h2>
-    <button class="q-btn outline" onclick="showScreen('builder')">← Back</button>
-    <button class="q-btn outline" onclick="printQuote()" style="margin-left:6px">Save PDF</button>
+    <h2 style="font-family:Nunito,sans-serif;font-weight:900">
+      <span style="color:var(--dark)">POP </span><span style="color:var(--pink)">PLAY</span>
+      <span style="font-size:14px;font-weight:600;color:var(--soft);margin-left:10px">Your Quote</span>
+    </h2>
+    <div style="display:flex;align-items:center;gap:8px;margin-left:auto">
+      <span style="font-size:11px;color:var(--soft)" id="q-hdr-step">Step 3 of 3</span>
+      <button class="q-btn outline" onclick="showScreen('builder')">← Back to builder</button>
+      <button class="q-btn outline" onclick="printQuote()">Download PDF</button>
+    </div>
   </div>
+
   <div class="quote-body">
-    <div class="q-sec"><h3>Your Layout</h3><div class="snap-wrap" id="quote-snapshot"></div><div id="quote-meas" style="font-size:12px;color:var(--soft);margin-top:6px"></div></div>
-    <div class="q-sec"><h3>Products</h3><div id="quote-products"></div></div>
-    <div class="q-sec"><h3>Pricing Summary</h3><div id="quote-totals"></div>
-      <label class="install-check"><input type="checkbox" id="install-toggle" onchange="toggleInstall()">Include installation estimate (10% of products subtotal)</label>
-    </div>
-    <div class="q-sec"><h3>Annual Subscriptions (per unit, per year)</h3><div id="quote-subs"></div></div>
-    <div class="q-sec"><h3>Rules Board — Complimentary</h3>
-      <div class="rules-row"><img src="" id="rules-img" alt="Rules board"><div><div style="font-weight:700;font-size:13px">Pop Play Rules Board</div><div style="font-size:11px;color:var(--soft)">Complimentary with every order</div></div></div>
-    </div>
-    <div class="q-sec"><h3>Submit Your Configuration</h3>
-      <div class="q-form-grid">
-        <div class="q-field"><label>Your name</label><input type="text" id="q-name" placeholder="Jane Smith"></div>
-        <div class="q-field"><label>Email</label><input type="email" id="q-email" placeholder="jane@airport.com"></div>
-        <div class="q-field" style="grid-column:1/-1"><label>Organisation / venue</label><input type="text" id="q-org" placeholder="Singapore Changi Airport"></div>
-        <div class="q-field" style="grid-column:1/-1"><label>Notes (optional)</label><textarea id="q-notes" rows="3" placeholder="Any questions or specific requirements…"></textarea></div>
+    <!-- Step 3 heading -->
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px">
+      <div style="width:32px;height:32px;border-radius:50%;background:var(--pink);color:#fff;font-family:Nunito,sans-serif;font-weight:900;font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0">3</div>
+      <div>
+        <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:20px">Your live quote</div>
+        <div style="font-size:13px;color:var(--soft)">Submit to get a 3D render and tailored pricing</div>
       </div>
-      <button class="submit-btn" id="submit-btn" onclick="submitQuote()">Send my configuration to Play9 →</button>
-      <div class="q-note">Quote valid 30 days · 80% deposit on order · 20% before dispatch · Lead time 12–18 weeks · All prices ex. tax</div>
     </div>
+
+    <div class="quote-layout">
+      <!-- LEFT COLUMN -->
+      <div>
+        <!-- Snapshot -->
+        <div class="q-sec" style="margin-bottom:16px">
+          <h3>YOUR POP PLAYSPACE:</h3>
+          <div class="snap-wrap" id="quote-snapshot"></div>
+          <div id="quote-meas" style="font-size:12px;color:var(--soft);margin-top:8px"></div>
+        </div>
+
+        <!-- Products + pricing -->
+        <div class="q-sec">
+          <div id="quote-products"></div>
+          <div id="quote-totals"></div>
+          <div id="quote-kidszone-box"></div>
+          <div style="font-size:11px;color:var(--soft);margin-top:12px;padding-top:12px;border-top:1px solid var(--border)">
+            <strong>Lead time:</strong> Varies pending final product combination, 12–18 weeks &nbsp;·&nbsp;
+            <strong>Payment:</strong> 80% upfront / 20% before dispatch &nbsp;·&nbsp; Prices ex tax
+          </div>
+        </div>
+
+        <!-- Subscriptions -->
+        <div class="q-sec" style="margin-top:16px">
+          <h3>Annual Subscriptions (per unit, per year)</h3>
+          <div id="quote-subs"></div>
+        </div>
+
+        <!-- Rules board -->
+        <div class="q-sec" style="margin-top:16px">
+          <h3>Rules Board — Complimentary</h3>
+          <div class="rules-row">
+            <img src="" id="rules-img" alt="Rules board">
+            <div>
+              <div style="font-weight:700;font-size:13px">Pop Play Rules Board</div>
+              <div style="font-size:11px;color:var(--soft)">Complimentary with every order — included at no charge</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN — dark panel -->
+      <div class="q-right-panel">
+
+        <!-- What happens box -->
+        <div class="q-what-happens">
+          <h4>What happens after you submit</h4>
+          <div class="q-what-step"><div class="q-what-num">1</div><span>Our team reviews your layout — sometimes tweaks are needed to make your space work best</span></div>
+          <div class="q-what-step"><div class="q-what-num">2</div><span>We send you a <strong>3D render</strong> of your space so you can see it come to life</span></div>
+          <div class="q-what-step"><div class="q-what-num">3</div><span>You receive a tailored quote built around your exact requirements</span></div>
+        </div>
+
+        <h3>Submit your layout —<br>get a <span>3D render</span> of your space</h3>
+        <p class="q-right-sub">A bunch of really awesome actual humans will take a look and get in touch within one business day.</p>
+
+        <div class="q-name-row">
+          <div class="q-field-dark"><label>First name *</label><input type="text" id="q-fname" placeholder="Jane"></div>
+          <div class="q-field-dark"><label>Last name</label><input type="text" id="q-lname" placeholder="Smith"></div>
+        </div>
+        <div class="q-field-dark"><label>Email *</label><input type="email" id="q-email" placeholder="jane@airport.com"></div>
+        <div class="q-field-dark"><label>Organisation *</label><input type="text" id="q-org" placeholder="Denver International Airport"></div>
+        <div class="q-field-dark"><label>Delivery address *</label><textarea id="q-address" rows="2" placeholder="Country and delivery address"></textarea></div>
+
+        <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:4px">Shipping</div>
+        <div class="q-section-note">Select to include in your tailored quote</div>
+        <div class="q-toggle-group" id="shipping-group">
+          <button class="q-toggle-btn active" onclick="toggleShipping(this,'air')">Air</button>
+          <button class="q-toggle-btn" onclick="toggleShipping(this,'sea')">Sea</button>
+          <button class="q-toggle-btn" onclick="toggleShipping(this,'both')">Quote both</button>
+        </div>
+
+        <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:4px">Install crew</div>
+        <div class="q-section-note">Select to include in your tailored quote</div>
+        <div class="q-toggle-group" id="install-group">
+          <button class="q-toggle-btn" onclick="toggleInstallCrew(this,'yes')">Yes</button>
+          <button class="q-toggle-btn active" onclick="toggleInstallCrew(this,'no')">Not required</button>
+        </div>
+
+        <div class="q-field-dark"><label>Notes</label><textarea id="q-notes" rows="3" placeholder="Timeline, dimensions, any other details…"></textarea></div>
+
+        <button class="q-cta-btn" id="submit-btn" onclick="submitQuote()">Send layout — get 3D render + quote</button>
+        <p class="q-rough-note">Rough estimate only — your final price may be lower. You may already qualify for bundle pricing.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="q-footer">
+    Any questions? <a href="mailto:hello@play9studios.com">hello@play9studios.com</a>
+    &nbsp;·&nbsp; Pop Play by Play9 Studios &nbsp;·&nbsp; Since 2009 &nbsp;·&nbsp;
+    <a href="https://play9studios.com" target="_blank">play9studios.com</a>
   </div>
 </div>
 
@@ -1386,43 +1512,130 @@ function updateLivePricing(){
 
 // ── QUOTE ─────────────────────────────────────────────────────────────────────
 function goToQuote(){buildQuoteScreen();showScreen('quote');}
+// Shipping/install selection state
+let selectedShipping='air', selectedInstall='no';
+function toggleShipping(btn,val){
+  selectedShipping=val;
+  document.querySelectorAll('#shipping-group .q-toggle-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+function toggleInstallCrew(btn,val){
+  selectedInstall=val;
+  document.querySelectorAll('#install-group .q-toggle-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
 function buildQuoteScreen(){
-  // Snapshot
+  // ── Snapshot ──────────────────────────────────────────────────────────────
   const snap=document.getElementById('quote-snapshot');
   snap.innerHTML='';
   const sc=0.5;
+  const F=FENCE_PX*sc;
+  const C=CELL_PX*sc;
+  const w=state.gridW, l=state.gridL;
+  const totalW=w*C+(state.fencingEnabled?F*2:0);
+  const totalH=l*C+(state.fencingEnabled?F*2:0);
   const snapDiv=document.createElement('div');
-  snapDiv.style.cssText=`position:relative;display:inline-block;width:${state.gridW*CELL_PX*sc}px;height:${state.gridL*CELL_PX*sc}px`;
-  for(let r=0;r<state.gridL;r++) for(let c=0;c<state.gridW;c++){
+  snapDiv.style.cssText=`position:relative;display:inline-block;width:${totalW}px;height:${totalH}px`;
+  const offX=state.fencingEnabled?F:0;
+  const offY=state.fencingEnabled?F:0;
+  // Grid cells
+  for(let r=0;r<l;r++) for(let c=0;c<w;c++){
     const cell=document.createElement('div');
-    cell.style.cssText=`position:absolute;left:${c*CELL_PX*sc}px;top:${r*CELL_PX*sc}px;width:${CELL_PX*sc}px;height:${CELL_PX*sc}px;background:${getCellColour(r,c)};border:0.5px solid rgba(255,255,255,.2)`;
+    cell.style.cssText=`position:absolute;left:${offX+c*C}px;top:${offY+r*C}px;width:${C}px;height:${C}px;background:${getCellColour(r,c)};border:0.5px solid rgba(255,255,255,.15)`;
     snapDiv.appendChild(cell);
   }
+  // Fence/ramp strips in snapshot
+  if(state.fencingEnabled){
+    for(let c=0;c<w;c++){
+      addSnapStrip(snapDiv, offX+c*C, 0, C, F, 'h', 'top:'+c, sc);
+      addSnapStrip(snapDiv, offX+c*C, offY+l*C, C, F, 'h', 'bottom:'+c, sc);
+    }
+    for(let r=0;r<l;r++){
+      addSnapStrip(snapDiv, 0, offY+r*C, F, C, 'v', 'left:'+r, sc);
+      addSnapStrip(snapDiv, offX+w*C, offY+r*C, F, C, 'v', 'right:'+r, sc);
+    }
+    // Corners
+    [[0,0,'corner:tl'],[offX+w*C,0,'corner:tr'],[0,offY+l*C,'corner:bl'],[offX+w*C,offY+l*C,'corner:br']].forEach(([x,y,k])=>{
+      const d=document.createElement('div');
+      const[adjR,adjC]=k==='corner:tl'?[0,0]:k==='corner:tr'?[0,w-1]:k==='corner:bl'?[l-1,0]:[l-1,w-1];
+      d.style.cssText=`position:absolute;left:${x}px;top:${y}px;width:${F}px;height:${F}px;background:${getCellColour(adjR,adjC)}`;
+      snapDiv.appendChild(d);
+    });
+  }
+  // Products
   state.placedProducts.forEach(placed=>{
     const p=PRODUCTS.find(x=>x.id===placed.pid);if(!p)return;
     const{pw,ph}=getSize(placed);
     const img=document.createElement('img');
     img.src=IMGS[p.id+'_outline']||'';
-    img.style.cssText=`position:absolute;left:${placed.x*CELL_PX*sc}px;top:${placed.y*CELL_PX*sc}px;width:${pw*CELL_PX*sc}px;height:${ph*CELL_PX*sc}px;object-fit:fill;transform:rotate(${placed.rotation*90}deg)`;
+    img.style.cssText=`position:absolute;left:${offX+placed.x*C}px;top:${offY+placed.y*C}px;`+
+      `width:${pw*C}px;height:${ph*C}px;object-fit:fill;transform:rotate(${placed.rotation*90}deg)`;
     snapDiv.appendChild(img);
   });
   snap.appendChild(snapDiv);
-  document.getElementById('quote-meas').textContent=cellDim(state.gridW)+' wide × '+cellDim(state.gridL)+' long';
-  // Products
+
+  // Dimensions with sqft/sqm
+  const wD=cellDim(w), lD=cellDim(l);
+  const areaM2=(w*CELL_M)*(l*CELL_M);
+  const areaFt2=areaM2*10.7639;
+  const areaStr=state.unit==='ft'
+    ? Math.round(areaFt2)+' sq ft ('+areaM2.toFixed(1)+' m²)'
+    : areaM2.toFixed(1)+' m² ('+Math.round(areaFt2)+' sq ft)';
+  document.getElementById('quote-meas').textContent=wD+' wide × '+lD+' long · '+areaStr;
+
+  // ── Products list ──────────────────────────────────────────────────────────
   const prodEl=document.getElementById('quote-products');
   prodEl.innerHTML='';
-  const{counts}=calcPricing();
+  const{counts,productSub}=calcPricing();
   Object.entries(counts).forEach(([pid,qty])=>{
     const p=PRODUCTS.find(x=>x.id===pid);if(!p)return;
     const row=document.createElement('div');row.className='q-prod-row';
     row.innerHTML=`<img src="${IMGS[p.id+'_icon']||''}" alt="${p.name}">
-      <div class="q-prod-info"><div class="q-prod-name">${p.name}${qty>1?' ×'+qty:''}</div>
-      <div class="q-prod-sub">${p.w}×${p.h} pop piece${p.w*p.h>1?'s':''}</div></div>
+      <div class="q-prod-info">
+        <div class="q-prod-name">${p.name}${qty>1?' <span style="color:var(--soft)">×'+qty+'</span>':''}</div>
+        <div class="q-prod-sub">${p.w}×${p.h} POP PIECE${p.w*p.h>1?'S':''}</div>
+      </div>
       <div class="q-prod-price">$${(p.price*qty).toLocaleString()}</div>`;
     prodEl.appendChild(row);
   });
-  buildTotals(); buildSubs(counts);
+
+  buildTotals();
+  buildSubs(counts);
+  buildKidszoneBox(counts);
   document.getElementById('rules-img').src=IMGS['rules']||'';
+}
+
+function addSnapStrip(container,x,y,w,h,orient,key,sc){
+  const type=getEdgeType(key);
+  const isRamp=type==='ramp';
+  const d=document.createElement('div');
+  // Get adjacent colour
+  const col=getAdjacentFloorColour(key);
+  d.style.cssText=`position:absolute;left:${x}px;top:${y}px;width:${w}px;height:${h}px;background:${col};overflow:hidden`;
+  const img=document.createElement('img');
+  img.src=orient==='h'?(isRamp?IMGS['ramp_h']:IMGS['fence_h']):(isRamp?IMGS['ramp_v']:IMGS['fence_v']);
+  img.style.cssText='width:100%;height:100%;object-fit:fill;display:block';
+  d.appendChild(img);
+  container.appendChild(d);
+}
+
+function buildKidszoneBox(counts){
+  const el=document.getElementById('quote-kidszone-box');
+  el.innerHTML='';
+  const hasKidszone=Object.keys(counts||{}).some(pid=>
+    ['double_kidszone','single_kidszone','totem','kidszone_table','storytime'].includes(pid));
+  if(!hasKidszone) return;
+  el.innerHTML=`<div class="kidszone-box">
+    <h5>Included with Kidszone products</h5>
+    <ul>
+      <li>Play9 Games Library — unlimited game theme changes</li>
+      <li>IM Platform — real-time analytics dashboard</li>
+      <li>Game scheduling &amp; remote content management</li>
+      <li>Remote support &amp; service desk access</li>
+    </ul>
+    <div class="ks-note">Full subscription pricing included in your tailored quote.</div>
+  </div>`;
 }
 function buildTotals(){
   const{productSub,afterDisc,discPct,discAmt,surcharge,fencePanels,fenceCost,rampPanels,rampCost,installAmt,total}=calcPricing();
@@ -1435,7 +1648,18 @@ function buildTotals(){
   if(fencePanels>0) row('Fence panels ('+fencePanels+' × $1,480)','$'+fenceCost.toLocaleString());
   if(rampPanels>0) row('Ramp panels ('+rampPanels+' × $990)','$'+rampCost.toLocaleString());
   if(installAmt>0) row('Installation estimate (10%)','$'+installAmt.toLocaleString());
-  row('TOTAL (ex. tax)',discPct===null?'Contact Play9 for pricing':'$'+total.toLocaleString());
+  // Subtotal row
+  const subEl=document.createElement('div');
+  subEl.style.cssText='display:flex;justify-content:space-between;padding:10px 0;border-top:1px solid var(--border);margin-top:4px;font-size:14px;font-weight:600;color:var(--mid)';
+  subEl.innerHTML='<span>Subtotal</span><span>$'+afterDisc.toLocaleString()+' <span style="font-size:11px;font-weight:400;color:var(--soft)">ex tax</span></span>';
+  el.appendChild(subEl);
+  // Estimated total
+  const estEl=document.createElement('div');
+  estEl.className='est-total-row';
+  estEl.innerHTML='<span class="est-total-label">Estimated total</span>'+
+    '<span><span class="est-total-val">$'+total.toLocaleString()+'</span>'+
+    '<span class="est-total-note">ex tax</span></span>';
+  el.appendChild(estEl);
 }
 function buildSubs(counts){
   const el=document.getElementById('quote-subs');el.innerHTML='';
@@ -1458,8 +1682,13 @@ async function submitQuote(){
   btn.textContent='Sending…';btn.disabled=true;
   const{total,discPct,fencePanels,rampPanels}=calcPricing();
   const lines=state.placedProducts.map(pl=>{const p=PRODUCTS.find(x=>x.id===pl.pid);return p?p.name+' ×1':'';});
-  const body={name:document.getElementById('q-name').value,email:document.getElementById('q-email').value,
-    org:document.getElementById('q-org').value,notes:document.getElementById('q-notes').value,
+  const fname=document.getElementById('q-fname')?.value||'';
+  const lname=document.getElementById('q-lname')?.value||'';
+  const body={name:fname+' '+lname,email:document.getElementById('q-email').value,
+    org:document.getElementById('q-org').value,
+    address:document.getElementById('q-address')?.value||'',
+    shipping:selectedShipping,install_crew:selectedInstall,
+    notes:document.getElementById('q-notes').value,
     products:lines.join(', '),total:discPct===null?'POA':'$'+total.toLocaleString(),
     discount:discPct?discPct+'%':'None',
     fencing:fencePanels+' fence + '+rampPanels+' ramp panels',
